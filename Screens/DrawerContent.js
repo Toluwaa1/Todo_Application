@@ -3,10 +3,10 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 
 import {
+  useTheme,
   Avatar,
   Title,
   Caption,
-  Paragraph,
   Drawer,
   Text,
   TouchableRipple,
@@ -20,13 +20,8 @@ import {AuthContext} from '../Components/Context';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export function DrawerContent(props) {
-  const [isDarkTheme, setIsDarkTheme] = React.useState(false);
-
-  const {signOut} = React.useContext(AuthContext);
-
-  const toggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
-  };
+  const paperTheme = useTheme();
+  const {signOut, toggleTheme} = React.useContext(AuthContext);
 
   return (
     <View style={{flex: 1}}>
@@ -39,7 +34,7 @@ export function DrawerContent(props) {
                 size={50}
               />
               <View style={{marginLeft: 15, flexDirection: 'column'}}>
-                <Title style={styles.Title}>Adewuyi Alawusa</Title>
+                <Title style={styles.title}>Adewuyi Alawusa</Title>
                 <Caption style={styles.caption}>@Toluwa_A1</Caption>
               </View>
             </View>
@@ -94,7 +89,7 @@ export function DrawerContent(props) {
               <View style={styles.preference}>
                 <Text> Dark Mode</Text>
                 <View pointerEvents="none">
-                  <Switch value={isDarkTheme} />
+                  <Switch value={paperTheme.dark} />
                 </View>
               </View>
             </TouchableRipple>
@@ -124,12 +119,12 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
   },
   title: {
-    fontsize: 16,
+    fontSize: 16,
     marginTop: 3,
     fontWeight: 'bold',
   },
   caption: {
-    fontsize: 14,
+    fontSize: 14,
     lineHeight: 14,
   },
   row: {

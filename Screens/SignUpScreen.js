@@ -19,7 +19,7 @@ import {NavigationContainer} from '@react-navigation/native';
 
 const SignUpScreen = ({navigation}) => {
   const [data, setData] = React.useState({
-    email: '',
+    username: '',
     password: '',
     confirm_password: '',
     check_textInputChange: false,
@@ -31,13 +31,13 @@ const SignUpScreen = ({navigation}) => {
     if (val.length != 0) {
       setData({
         ...data,
-        email: val,
+        username: val,
         check_textInputChange: true,
       });
     } else {
       setData({
         ...data,
-        email: val,
+        username: val,
         check_textInputChange: false,
       });
     }
@@ -78,11 +78,11 @@ const SignUpScreen = ({navigation}) => {
         <Text style={styles.text_header}>Register Now!</Text>
       </View>
       <Animatable.View animation="fadeInUpBig" style={styles.footer}>
-        <Text style={styles.text_footer}>Email</Text>
+        <Text style={styles.text_footer}>Username</Text>
         <View style={styles.action}>
           <Feather name="user" color="#05375a" size={20} />
           <TextInput
-            placeholder="Email.."
+            placeholder="Username.."
             onChangeText={val => textInputChange(val)}
             style={styles.textInput}
             autoCapitalize="none"
@@ -133,13 +133,19 @@ const SignUpScreen = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
+        <TouchableOpacity>
+          <Text style={{color: '#009387', marginTop: 15}}>
+            By completing this process you agree to our Terms and Condtions
+          </Text>
+        </TouchableOpacity>
+
         <View style={styles.button}>
           <LinearGradient colors={['#FFB3C6', '#87CEEB']} style={styles.signIn}>
             <Text style={[styles.textSign, {color: '#fff'}]}>Sign Up</Text>
           </LinearGradient>
 
           <TouchableOpacity
-            onPress={() => navigation.navigate('SignInScreen')}
+            onPress={() => navigation.goBack()}
             style={[
               styles.signIn,
               {borderColor: '#009387', borderWidth: 1, marginTop: 15},

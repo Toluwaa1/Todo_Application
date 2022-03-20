@@ -1,26 +1,43 @@
 import React from 'react';
-import {View, Text, Button, SafeAreaView} from 'react-native';
+import {
+  View,
+  Text,
+  Button,
+  SafeAreaView,
+  StyleSheet,
+  Image,
+} from 'react-native';
 
 const AboutScreen = ({navigation}) => {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>To Do Screen</Text>
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button
-        title="Go to First Screen"
-        onPress={() => navigation.popToTop()}
-      />
-      <Button
-        title="Go to About Screen"
-        onPress={() => navigation.push('About')}
-      />
-      <Button title="Go Back" onPress={() => navigation.goBack()} />
-      <Button
-        title="Go to Settings Page"
-        onPress={() => navigation.navigate('Settings')}
-      />
-    </View>
+    <SafeAreaView style={{flex: 1}}>
+      <View style={style.header}>
+        <View style={{alignItems: 'center'}}>
+          <Text style={(colors = '#234534')}>Author:</Text>
+          <Text style={{colors: '#234534', fontSize: 18, fontWeight: 'bold'}}>
+            Adewuyi Alawusa
+          </Text>
+          <Image source={require('../assets/profile.jpg')} />
+          <Text style={{fontSize: 18, fontWeight: 'bold'}}>
+            My name is Toluwanimi Adewuyi i am a graduating stunet and i just
+            wanted to tell you a bit about myself. I am graduating this
+            semsester and this is my end of term project. It was a short one
+            that helps a lot of scatter brains like me organize themselves just
+            a bit.
+          </Text>
+        </View>
+      </View>
+    </SafeAreaView>
   );
 };
 
 export default AboutScreen;
+
+const style = StyleSheet.create({
+  header: {
+    paddingVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+  },
+});
